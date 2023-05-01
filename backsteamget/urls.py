@@ -16,7 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from steamget import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('', views.index, name="home"),
+    path("results", views.results,kwargs = {"name":"oleg","age":10}),
+    path("vk", views.vk)
 ]
