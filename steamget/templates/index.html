@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title></title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+	<!-- <link rel="stylesheet" type="text/css" href="bootstrap-grid.css"> -->
+	<link rel="stylesheet" type="text/css" href="../static/css/popup14.css" >
+	<link rel="stylesheet" type="text/css" href="../static/css/style15.css" >
+	<link rel="stylesheet" type="text/css" href="../static/css/mystyle14.css" >
+	<link rel="stylesheet" type="text/css" href="../static/css/footer14.css" >
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<script src="//code.jivo.ru/widget/f6hUu2Yhoy" async></script>
+
+</head>
+
+<body>
+    <!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]function(){(m[i].a=m[i].a[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(93409587, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/93409587" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+ 	<div class="container td">
+		<div class="container">
+
+			<div class="row mt-3 justify-content-between">
+				<img class="img-logo" src="../static/img/logo_text.png" alt="">
+				<div class="el d-flex justify-content-center align-self-center">
+					<div class="el__ic me-2"><img class="user-ic" src="../static/img/human.svg" alt=""></div>
+					<div class="el__text text text-center">
+						<div class="text__title fs-4">2 123</div>
+						<div class="text__clients">Клиентов</div>
+					</div>
+				</div>
+			</div>
+			<div class="row mt-3 justify-content-between">
+				<div class="cont">
+					<a href="#">
+						<div class="dsa text-center">пополнение баланса</div>
+					</a>
+				</div>
+				<div class=" block_wait">
+					<a href="#" class="dis">
+						<div class="dsa text-center">игровые ключи</div>
+					</a>
+				</div>
+				<div class=" block_wait" id="third">
+					<a href="#" class="dis">
+						<div class="dsa text-center">игровая валюта</div>
+					</a>
+				</div>
+			</div>
+
+			<div class="row mt-5 ">
+				<div class="col"><h1>Пополнить баланс Steam</h1></div>
+			</div>
+			<div class="row mt-3">
+				<div class="col question">
+					<img src="../static/img/quest.svg" alt="">
+					<h6 class="marginf"> Как это работает?</h6>
+				</div>
+			</div>
+		<form action="order" method="post">
+			{% csrf_token %}
+			<div class="row mt-3">
+				<div class="col-md-6">
+					<div class="row">
+						<div class="col  input_field">
+							<input class="input_login" type="text" placeholder="login" name="login" autocomplete="off" required>
+							<div class="info_inpit_login">
+								<span class="info_inpit_login_text">Где взять логин</span>
+								<img src="../static/img/quest.svg" alt="">
+							</div>
+							<div class="img_from_login">
+								<img  src="../static/img/humanwhite.svg" alt="">
+								<!-- <img  src="img/human2.svg" alt=""> -->
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col  input_field">
+							<input class="input_login input_money" name="money" type="text" placeholder="100 руб" onkeyup="this.value = this.value.replace(/[^\d]/g,'');"  maxlength="10" required>
+							<div class="div_money">
+								<img src="../static/img/cash3.svg" alt="">
+							</div>
+						</div>
+					</div>
+
+					<div class="row ">
+						<div class="col radio_input paddingf">
+							<span class=""><input type="radio" name="SUM" value="100">100₽</span>
+							<span class=""><input type="radio" name="SUM" value="200">200₽</span>
+							<span class=""><input type="radio" name="SUM" value="500">500₽</span>
+							<span class=""><input type="radio" name="SUM" value="2000">2000₽</span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col  input_field">
+							<input class="input_login input_promo" type="text" placeholder="Промокод"  name="promo">
+							<div class="div_money">
+								<img src="../static/img/svgviewer-output.svg" alt="">
+							</div>
+						</div>
+					</div>
+					<div class="row check_confirm">
+
+						<div class="row_confirm">
+							<div class="fake_input">
+								<img src="../static/img/sprite.svg" alt="" >
+							</div>
+							<span>Я подтверждаю, что указал логин Steam, а не никнейм</span>
+							<input type="checkbox" name="AGREEMENT" required="" class="input_agree" required checked>
+						</div>
+
+					</div>
+
+					<div class="row mt-3">
+						<div class="col mt-2 btn_cash paddingf">
+							<button type="submit"> Оплатить</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-1"></div>
+				<div class="col-md-5">
+
+					<div class="row row_banks">
+						<div class="elem_banks elem_select_banks">
+							<div class="bank_pick">
+								<img src="../static/img/bankok3.svg" alt="">
+							</div>
+							<img src="../static/img/visa.svg" alt="">
+							<input type="radio" name="banks" checked value="visa">
+						</div>
+
+						<div class="elem_banks">
+							<div class="bank_pick">
+								<img src="../static/img/bankok3.svg" alt="">
+							</div>
+							<img src="../static/img/qiwi.svg" alt="">
+							<input type="radio" name="banks" value="qiwi">
+						</div>
+					<!-- 	<div class="elem_banks">
+							<div class="bank_pick">
+								<img src="../static/img/bankok3.svg" alt="">
+							</div>
+							<img src="../static/img/umoney.svg" alt="">
+							<input type="radio" name="banks" value="umoney">
+						</div>
+						<div class="elem_banks">
+							<div class="bank_pick">
+								<img src="../static/img/bankok3.svg" alt="">
+							</div>
+							<img src="../static/img/tinkoff.svg" alt="">
+							<input type="radio" name="banks" value="tinkoff">
+						</div> -->
+
+						<div class="banksoff">
+							<img src="../static/img/sbp.svg" alt="">
+						</div>
+					</div>
+
+
+					<div class="row mt-3">
+						<div class="row_calc ">
+							<div class="title_calc">Заплатите:</div>
+							<div class="border_calc"></div>
+							<div class="money_calc">0 руб</div>
+						</div>
+						<div class="row_calc">
+							<div class="title_calc">Получите на баланс Steam:</div>
+							<div class="border_calc"></div>
+							<div class="money_calc">0 руб</div>
+						</div>
+						<div class="row_calc">
+							<div class="title_calc">Комиссия сервиса:</div>
+							<div class="mini_modal_servis">
+								<img src="../static/img/quest.svg" alt="">
+							</div>
+							<div class="border_calc"></div>
+							<div class="money_calc">0 руб</div>
+						</div>
+						<div class="row_calc">
+							<div class="title_calc">Банковские издержки:</div>
+							<div class="mini_modal_banks">
+								<img src="../static/img/quest.svg" alt="">
+							</div>
+							<div class="border_calc"></div>
+							<div class="money_calc">0 руб</div>
+						</div>
+
+					</div>
+			</div>
+			</div>
+		</form>
+		</div>
+
+		<footer>
+			<div class="footer-menu">
+				<ul class="footer-menu__list list">
+					<li class="list__item"><a id="vk">Отзывы</a></li>
+					<li class="list__item"><a  class="contact">Контакты</a></li>
+					<li class="list__item"><a  class="FAO">FAO</a></li>
+					<li class="list__item"><a class="polit">Политика конфеденциальности</a></li>
+					<li class="list__item"><a class="user-agreement">Пользовательское соглашение</a></li>
+				</ul>
+			</div>
+			<div class="footer-vk">
+				<a href="https://vk.com/feed" target="_blank">
+					<img class="footer-vk__img" src="../static/img/vk2.png" alt="">
+				</a>
+			</div>
+		</footer>
+    </div>
+
+
+
+
+
+	<div class="popup">
+		<div class="popup__body">
+			<div class="popup__content">
+				<div class="popup__close"><img class="popup__close-img close-FAO"
+							src="../static/img/close-modal.svg" alt="">
+				</div>
+				<div class="popup__title">
+					<h2>FAQ</h2>
+				</div>
+				<div class="popup__text-wrapper">
+					<div class="popup__text-title">
+						<h4>ВАЖНО! Требования к аккаунту</h4>
+					</div>
+					<div class="popup__text-body">
+						Есть перечень требований к аккаунту, соответствие которых позволит нам совершить пополнение
+						баланса:
+						Страной Вашего аккаунта должна быть Россия (и следовательно, валюта аккаунта — рубли).
+						Также мы НЕ можем отправить средства пользователям из следующих регионов: Крым, ЛНР, ДНР и тем
+						пользователям, на аккаунте которых красная табличка (КТ).
+					</div>
+				</div>
+				<div class="popup__text-wrapper">
+					<div class="popup__text-title">
+						<h4>У меня новый (свежесозданный) или ранее не пополнявшийся аккаунт</h4>
+					</div>
+					<div class="popup__text-body">
+						Если Вы совершаете первое пополнение аккаунта Steam, то валюта аккаунта может смениться на одну
+						из списка ($, ₸, € и другие).
+						<br><br>
+						В этом случае цены на внутренние товары Steam будут пересчитываться в валюту аккаунта ($, ₸, € и
+						другие), а не ₽ (рубли). Учтите это при пополнении!
+					</div>
+				</div>
+				<div class="popup__text-wrapper">
+					<div class="popup__text-title">
+						<h4>Пришла сумма меньше чем в калькуляторе. Что делать?</h4>
+					</div>
+					<div class="popup__text-body">
+						Если Вы совершаете первое пополнение аккаунта Steam, то валюта аккаунта может смениться на одну
+						из списка ($, ₸, € и другие).
+						<br><br>
+						В этом случае цены на внутренние товары Steam будут пересчитываться в валюту аккаунта ($, ₸, € и
+						другие), а не ₽ (рубли). Учтите это при пополнении!
+					</div>
+				</div>
+				<div class="popup__text-wrapper">
+					<div class="popup__text-title">
+						<h4>Политика возврата</h4>
+					</div>
+					<div class="popup__text-body">
+						Если вы проигнорировали требования к аккаунту и все же попытались отправить себе средства, то
+						они не дойдут.
+						В этом случае Вы вправе запросить возврат в ТП.
+						<br><br>
+						На Qiwi-кошелек средства будут возвращены с вычетом 2% от суммы. Сумма возврата любая.
+						На Карту банка средства будут возвращены с вычетом 50р и 3% от суммы.
+					</div>
+				</div>
+				<div class="popup__text-wrapper">
+					<div class="popup__text-title">
+						<h4>Не приходят деньги на баланс аккаунта Steam</h4>
+					</div>
+					<div class="popup__text-body">
+						Если Вы указали верно ЛОГИН (это не никнейм) и баланс Вашего аккаунта - рубли (₽), пополнение
+						происходит моментально.
+						<br>
+						Если Вам не поступили средства на баланс в течении 10 минут, пожалуйста обратитесь в Техническую
+						поддержку (виджет справа в углу экрана)
+					</div>
+				</div>
+				<div class="popup__text-wrapper">
+					<div class="popup__text-title">
+						<h4>Я указал неверный логин</h4>
+					</div>
+					<div class="popup__text-body">
+						Если такого логина в Steam не существует, то деньги не пропадут и мы сможем переотправить их на
+						корректный логин.
+						<br><br>
+						Незамедлительно обратитесь в Техническую поддержку (виджет справа в углу экрана)
+						Укажите какой логин написали при заказе, и какой логин — верный
+					</div>
+				</div>
+				<div class="popup__text-wrapper">
+					<div class="popup__text-title">
+						<h4>Что такое "Логин"?</h4>
+					</div>
+					<div class="popup__text-body">
+						Логин — это то что вы вводите при авторизации, у каждого пользователя он уникальный, а никнейм
+						вы можете менять по своему усмотрению. Людей с ником QWERTY может быть сотни. Не перепутайте ваш
+						логин и никнейм.
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="popup">
+		<div class="popup__body">
+			<div class="popup__content">
+				<div class="popup__close"><img class="popup__close-img close-FAO"
+							src="../static/img/close-modal.svg" alt="">
+				</div>
+				<div class="popup__title">
+					<h2>Политика конфиденциальности</h2>
+				</div>
+				<div class="popup__text-wrapper">
+					<div class="popup__text-title">
+						<h4>1 ВВЕДЕНИЕ</h4>
+					</div>
+					<div class="popup__text-body">
+						Используя и / или посещая любой раздел веб-сайта https://steambalance.ru/ («Веб-сайт»); или
+						открывая учетную запись на Сайте, вы соглашаетесь соблюдать Политику конфиденциальности. В
+						настоящей Политике конфиденциальности описывается, как мы собираем, используем, обрабатываем и
+						раскрываем вашу информацию, включая личную информацию, в связи с вашим доступом к этому
+						Веб-сайту и его использованием. «Контроллер данных» - это компания, которая определяет цели и
+						средства обработки персональных данных в соответствии с настоящей Политикой конфиденциальности.
+						EPICMID OÜ действует в качестве контроллера данных в соответствии с Регламентом ЕС 2016/679,
+						определяющим цели и средства обработки ваших личных данных. При использовании платежных услуг вы
+						также будете предоставлять свою информацию, включая личную информацию, компании EPICMID OÜ ,
+						регистрационный номер 16501649, зарегистрированной по адресу: Harju maakond, Tallinn, Kesklinna
+						linnaosa, Vesivärava tn 50-201, 10152.<br><br>
+						EPICMID OÜ будет обрабатывать вашу информацию, которая необходима для обработки платежей, и
+						будет действовать в качестве контроллера данных («Контроллер платежных данных») для вашей
+						информации, которая необходима для анализа и сообщения о действиях, вызывающих подозрение в
+						мошенничестве, отмывание денег, финансирование терроризма или любая другая незаконная
+						деятельность в соответствии с действующим законодательством, как это более точно указано
+						ниже.<br><br>
+						Для целей этой политики использование слов «мы», «нас» или «наш» относится к компании, которая
+						несет ответственность за вашу информацию в соответствии с настоящей Политикой
+						конфиденциальности. Пожалуйста, см. Раздел 9 для получения контактных данных Контроллеров
+						данных.
+					</div>
+				</div>
+				<div class="popup__text-wrapper">
+					<div class="popup__text-title">
+						<h4>2 ИНФОРМАЦИЯ, КОТОРУЮ МЫ СОБИРАЕМ</h4>
+					</div>
+					<div class="popup__text-body">
+						Мы собираем вашу личную информацию, которая может быть использована для идентификации наших
+						клиентов и партнеров, включая, помимо прочего, имя и фамилию, дату рождения, данные банковского
+						счета, домашний или другой физический адрес, адрес электронной почты, номер телефона. ,
+						информация о доставке, платежная информация, история транзакций, предпочтения использования
+						веб-сайта и отзывы о веб-сайте или другая контактная информация, которая является личной
+						информацией («Персональная информация»).
+					</div>
+				</div>
+				<div class="popup__text-wrapper">
+					<div class="popup__text-title">
+						<h4>2.1 ЛИЧНАЯ ИНФОРМАЦИЯ, КОТОРУЮ ВЫ ПРЕДОСТАВЛЯЕТЕ НАМ</h4>
+					</div>
+					<div class="popup__text-body">
+						Мы можем попросить вас предоставить Нам вашу личную информацию. В некоторых случаях мы можем
+						запросить у вас информацию посредством опросов или конкурсов. Участие в этих опросах или
+						конкурсах полностью осуществляется на добровольной основе, и, с этой точки зрения, вы вправе
+						принять решение о раскрытии такой информации. Информация, которую мы запрашиваем, может быть
+						связана с контактной информацией (например, имя, почтовый адрес и номер телефона) и
+						демографической информацией (например, почтовый индекс или возраст).
+					</div>
+				</div>
+				<div class="popup__text-wrapper">
+					<div class="popup__text-title">
+						<h4>2.2 ЛИЧНАЯ ИНФОРМАЦИЯ, КОТОРУЮ МЫ СОБИРАЕМ О ВАС</h4>
+					</div>
+					<div class="popup__text-body">
+						Кроме того, пока вы используете Веб-сайт, наши серверы ведут журнал активности. Этот журнал
+						собирает административную информацию и информацию о трафике, включая IP-адрес источника, время
+						доступа, дату доступа, посещенные веб-страницы, использование языка, отчеты о сбоях программного
+						обеспечения и тип используемого браузера. Этот журнал уникален для вас. Эта информация имеет
+						решающее значение для предоставления наших услуг, а также для их адекватности и возможностей. Мы
+						хотели бы проинформировать вас, что в определенных случаях мы можем проводить исследования
+						безопасности, чтобы подтвердить вашу личность, возраст, а также другие регистрационные данные,
+						предоставленные вами, а также проверить использование вами Веб-сайта и ваших финансовых
+						транзакций, чтобы гарантировать что нет потенциального нарушения наших Условий и / или
+						применимого законодательства. Для этой цели Мы можем использовать вашу Личную информацию и
+						раскрывать вашу Личную информацию третьим лицам, чтобы проверить информацию, которую вы
+						предоставляете для использования Веб-сайта, включая, возможно, но не обязательно, международный
+						обмен информацией. Сводные данные, которые будут составлены на основе полученной проверки
+						безопасности, могут состоять из запроса кредитного отчета и / или другой проверки информации,
+						предоставленной вашей стороной, по базам данных третьих лиц. Личная информация также может быть
+						получена из списков клиентов, которые могут быть законным образом получены от третьих лиц.
+					</div>
+				</div>
+				<div class="popup__text-wrapper">
+					<div class="popup__text-title">
+						<h4>3 ЛИЧНАЯ ИНФОРМАЦИЯ, КОТОРУЮ МЫ СОБИРАЕМ О ВАС</h4>
+					</div>
+					<div class="popup__text-body">
+						Спасибо, что соглашаетесь на обработку вашей личной информации. Мы можем выполнять наши обычные
+						функции. Мы хотели бы сообщить вам, что мы используем вашу личную информацию в следующих
+						целях:<br><br>
+						<span>3.1</span> С вашего согласия (и до его отзыва). Например, вы могли дать свое согласие на
+						получение маркетинговых информационных сообщений;<br><br>
+						<span>3.2</span> В необходимом объеме и для выполнения договорных обязательств, что означает
+						следующие действия:<br><br>
+						<span>&emsp;3.2.1</span> Обработка ваших онлайн-транзакций;<br><br>
+						<span>&emsp;3.2.2</span> предоставление клиентской поддержки.<br><br>
+						<span>3.3</span> Где это соответствует Нашим законным деловым интересам. что означает следующие
+						действия:<br><br>
+						<span>&emsp;3.3.1</span> Повышение качества и соответствия ряда услуг EPICMID OÜ, а также
+						продвижение Нашей службы поддержки клиентов;<br><br>
+						<span>&emsp;3.3.2</span> Действия, направленные на удовлетворение определенных требований
+						бизнеса;<br><br>
+						<span>&emsp;3.3.3</span> Действия, предпринимаемые для рабочих целей Веб-сайта;<br><br>
+						<span>&emsp;3.3.4</span> Проведение проверок безопасности и идентификации, проверяющих
+						действий;<br><br>
+						<span>&emsp;3.3.5</span> Предоставление информации о наших рекламных акциях, а также информации,
+						касающейся услуг EPICMID OÜ.<br><br>
+						Если упоминаются наши законные интересы в отношении обработки вашей личной информации,
+						пожалуйста, свяжитесь с нами, чтобы уточнить информацию, относящуюся к нашей оценке воздействия
+						на вас.
+					</div>
+				</div>
+				<div class="popup__text-wrapper">
+					<div class="popup__text-title">
+						<h4>4 СКОЛЬКО МЫ ХРАНИМ ВАШУ ИНФОРМАЦИЮ</h4>
+					</div>
+					<div class="popup__text-body">
+						После закрытия вашей учетной записи Личная информация вашей учетной записи будет храниться нами
+						не более 1 года после даты ее закрытия. Согласно финансовой информации, которая собирается в
+						рамках Нашего сотрудничества, такой как выплата комиссионных и т. Д., Эта информация будет
+						храниться примерно 10 лет после закрытия счета в соответствии с Нашими юридическими
+						обязательствами в отношении мошенничества, борьбы с отмыванием денег, и вопросы налогообложения.
+						Мы заверяем вас, что информация надежно хранится до конца периода хранения, после которого
+						информация будет соответственно удалена и / или уничтожена.<br><br>
+						<span>4.1</span> ВАШИ ПРАВА<br>Обратите внимание, что у вас есть права в отношении вашей личной
+						информации, которые включают:<br><br>
+						<span>&emsp;4.1.1</span> Право на получение информации о том, как Мы используем информацию, а
+						также о ваших правах в этом
+						отношении. Эта информация должна быть предоставлена ​​ясным, прозрачным и понятным образом. И
+						чтобы реализовать это право с вашей стороны<br><br>
+						<span>&emsp;4.1.2</span> Право на исправление имеющейся у нас информации о вас, если такая
+						информация противоречит к факту;<br><br>
+						<span>&emsp;4.1.3</span> Право на доступ и изучение вашей Личной информации, которой Мы
+						располагаем;<br><br>
+					</div>
+				</div>
+				<div class="popup__text-wrapper">
+					<div class="popup__text-title">
+						<h4>4 СКОЛЬКО МЫ ХРАНИМ ВАШУ ИНФОРМАЦИЮ</h4>
+					</div>
+					<div class="popup__text-body">
+						После закрытия вашей учетной записи Личная информация вашей учетной записи будет храниться нами
+						не более 1 года после даты ее закрытия. Согласно финансовой информации, которая собирается в
+						рамках Нашего сотрудничества, такой как выплата комиссионных и т. Д., Эта информация будет
+						храниться примерно 10 лет после закрытия счета в соответствии с Нашими юридическими
+						обязательствами в отношении мошенничества, борьбы с отмыванием денег, и вопросы налогообложения.
+						Мы заверяем вас, что информация надежно хранится до конца периода хранения, после которого
+						информация будет соответственно удалена и / или уничтожена.<br><br>
+						<span>4.1</span> ВАШИ ПРАВА<br>Обратите внимание, что у вас есть права в отношении вашей личной
+						информации, которые включают:<br><br>
+						<span>&emsp;4.1.1</span> Право на получение информации о том, как Мы используем информацию, а
+						также о ваших правах в этом
+						отношении. Эта информация должна быть предоставлена ​​ясным, прозрачным и понятным образом. И
+						чтобы реализовать это право с вашей стороны<br><br>
+						<span>&emsp;4.1.2</span> Право на исправление имеющейся у нас информации о вас, если такая
+						информация противоречит к факту;<br><br>
+						<span>&emsp;4.1.3</span> Право на доступ и изучение вашей Личной информации, которой Мы
+						располагаем;<br><br>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="popup">
+		<div class="popup__body">
+			<div class="popup__content">
+				<div class="popup__close"><img class="popup__close-img close-FAO"
+							src="../static/img/close-modal.svg" alt="">
+				</div>
+				<div class="popup__title">
+					<h2>Пользовательское соглашение</h2>
+				</div>
+				<div class="popup__text-wrapper">
+
+					<div class="popup__text-body">
+						ВНИМАНИЕ: Пожалуйста, ознакомьтесь с настоящим пользовательским соглашением до начала
+						использования сайта steambalance.ru и его программных средств. Использование функций на сайте
+						будет означать ваше согласие с условиями настоящего пользовательского соглашения. Если Вы не
+						согласны с условиями настоящего пользовательского соглашения, не исползуйте функции на сайте
+						steambalance.ru и не используйте его программные средства. Редакция от 7.06.2022<br><br>
+						EPICMID OÜ с одной стороны и лицо, акцептовавшее оферту, размещенную в сети Интернет по
+						постоянному адресу https://steambalance.ru/agreement, с другой стороны, заключили настоящее
+						пользовательское соглашение о нижеследующем.
+					</div>
+				</div>
+				<div class="popup__text-wrapper">
+					<div class="popup__text-title">
+						<h4>1 Термины и определения</h4>
+					</div>
+					<div class="popup__text-body">
+						В настоящем пользовательском соглашении, если из текста прямо не вытекает иное, следующие
+						термины будут иметь указанные ниже значения:<br>
+						«Steam», «служба Steam»<br>
+						Онлайновая услуга, предлагаемая корпорацией Valve, являющейся правообладателем объектов
+						Инвентаря.<br>
+						«Владелец»<br>EPICMID OÜ, Reg. number: 16501649, Beneficiary's address: Vesivärava tn 50-201
+						Kesklinna linnaosa, Tallinn Harju maakond 10152<br>«Пользователь»<br>Физическое лицо, имеющее
+						аккаунт Steam, заключившее с Владельцем Соглашение.<br>«Сайт»<br>Составные произведения,
+						представляющие собой совокупность информации, текстов, графических элементов, дизайна,
+						изображений, фото и видеоматериалов, программ для ЭВМ, иных результатов интеллектуальной
+						деятельности, за исключением Инвентаря, содержащихся в информационной системе, обеспечивающей
+						доступность такой информации в сети Интернет в пределах доменной зоны
+						steambalance.ru.<br>«Соглашение»<br>Настоящее пользовательское
+						соглашение.<br>«Стороны»<br>Владелец и Пользователь.<br>Все остальные термины и определения,
+						встречающиеся в тексте Соглашения, толкуются Сторонами в соответствии с законодательством
+						Эстонской Республики и сложившимися в сети Интернет обычными правилами толкования
+						соответствующих терминов. Названия заголовков (статей) Соглашения предназначены исключительно
+						для удобства пользования текстом Соглашения и буквального юридического значения не имеют.
+					</div>
+				</div>
+				<div class="popup__text-wrapper">
+					<div class="popup__text-title">
+						<h4>2 Заключение Соглашения</h4>
+					</div>
+					<div class="popup__text-body">
+						<span>2.1</span> Текст Соглашения, постоянно размещенный в сети Интернет по сетевому адресу
+						https://steambalance.ru/agreement и доступный при регистрации (авторизации) на Сайте, содержит
+						все существенные условия Соглашения и является предложением Владельца заключить Соглашение с
+						любым полностью дееспособным третьим лицом, использующим Сайт, на указанных в тексте Соглашения
+						условиях. Таким образом, текст Соглашения является публичной офертой в соответствии с
+						законодательством Эстонской Республики.<br><br>
+						<span>2.2</span> Надлежащим акцептом настоящей оферты считается последовательное осуществление
+						третьим лицом,
+						следующих действий:<br><br>
+						<span>&emsp;2.2.1</span> Ознакомление с условиями Соглашения;
+						<span>&emsp;2.2.2</span> Проставление символа в специальном поле под заголовком «Я принимаю
+						условия пользовательского соглашения»;
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal_login">
+		<h5>Где взять логин Steam?</h5>
+		<span>Обратите внимание! Логин, это то, что вы указываете при входе в Steam.
+		Если вы укажите неверный логин, то средства уйдут другому пользователю.</span>
+		<a href="https://store.steampowered.com/account/">Его вы можете взять тут</a>
+		<button class="btn_ok">Понятно</button>
+	</div>
+
+	<div class="modal_contac">
+	        <h4>Контакты</h4>
+	        <span>Адрес:<br>
+	        Некий адрес большой адрес
+	        <br>Номер:<br>
+	        Некий номер
+	        </span>
+	        <p>supersubaka@gmail.ru</p>
+	</div>
+
+	<div class="shadowW"></div>
+	<script src="../static/js/js9.js"></script>
+
+</body>
+</html>

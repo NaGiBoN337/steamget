@@ -15,11 +15,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from steamget import views
 
 urlpatterns = [
     path('', views.index, name="home"),
     path("results", views.results,kwargs = {"name":"oleg","age":10}),
-    path("vk", views.vk)
+    re_path(r"^order", views.order)
 ]
