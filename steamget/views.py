@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
 from steamget.order_f import QiwiForm
+from steamget.worksql import *
+
 
 def index(request):
     return render(request,"index.html")
@@ -13,21 +15,28 @@ def results(request,name,age):
     return HttpResponse(results)
 
 def order(request):
-    mpost = request.POST.get("login",0)
+    login = request.POST.get("login",0)
     money = request.POST.get("money",0)
     promo = request.POST.get("promo",0)
-    results = f"""
-        <h3>{mpost}</h3>
-        <h3>{money}</h3>
-        <h3>{promo}</h3>
-    """
-    print(money)
-    if not money:
+
+    try:
+        money = int(money)
+        if len(login) <= 0:
+            return HttpResponsePermanentRedirect("/")
+    except:
         return HttpResponsePermanentRedirect("/")
 
-    request1 = QiwiForm(money)
+
+    request1 = QiwiForm(str(money))
     request1.createSignHash()
-    url = request1.qiwi_request()
+    url, OperId = request1.qiwi_request()
+
+    try:
+        connection = connect_mysql("localhost", "root", "root", "wallet")
+        insert(connection,login, money, 0, OperId)
+
+    except Exception as e:
+        print(e)
 
     return HttpResponsePermanentRedirect(url)
 

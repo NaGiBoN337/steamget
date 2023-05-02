@@ -37,9 +37,10 @@ class QiwiForm():
 
         url = 'https://api.intellectmoney.ru/p2p/GetFormUrl'
         response = httpx.post(url, headers=headers,  data=self.data)
-       #print(response.text)
+        #print(response.text)
         #print(response.status_code)
         #print(response.text)
         page = BeautifulSoup(response.text, 'xml')
-        #print(page)
-        return page.Url.text
+        OperId = page.OperationId.text
+
+        return page.Url.text, OperId
