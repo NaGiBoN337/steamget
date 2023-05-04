@@ -13,14 +13,13 @@ def connect_mysql(host, user, password, db):
                            cursorclass=pymysql.cursors.DictCursor)
 
 
-def insert(con,login ,summ, promo, operId):
+def insert(con,login,summ, promo, operId):
     current_date = datetime.now()
-    query = f"insert into wallet.order (`login`,`summa`,`date`,`OperationId`,`promo`) values ('{login}', {summ},'{current_date}','{operId}', {promo});"
+    query = f"insert into wallet.order (`login`,`summa`,`date`,`OperationId`,`PaymentState`,`promo`) values ('{login}', {summ},'{current_date}','{operId}',0, {promo});"
 
     with con.cursor() as cursor:
         cursor.execute(query)
         con.commit()
 
-
-
-
+def select_last_oper(con,past_time):
+    query = f"SELECT * FROM wallet.order where date >= DATE_SUB(NOW() , INTERVAL {past_time} MINUTE);"

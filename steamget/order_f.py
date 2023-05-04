@@ -10,7 +10,7 @@ class QiwiForm():
             'comment': 'Оплата',
             'formId': '700433',   #// Укажите номер формы, который начинается с 7.
             'cardGuid': '',       #// Передается, если при создании формы вы не указали "Номер карты получателя".
-            'backUrl': 'https://steamget.ru/results',
+            'backUrl': 'https://steamget.ru/results.php',
             'language': 'RU',
 
         }
@@ -44,3 +44,22 @@ class QiwiForm():
         OperId = page.OperationId.text
 
         return page.Url.text, OperId
+
+    def checkPay(self, orderId):
+        url = 'https://api.intellectmoney.ru/p2p/CheckPay'
+        signStringToBeHashed = orderId + "::" + self.formId + "::" + self.signKey
+        StringToBeHashed = orderId + "::" + self.formId + "::" + self.formSecretKey
+        Signhash = hashlib.sha256(signStringToBeHashed.encode()).hexdigest()
+        datahash = hashlib.sha1(StringToBeHashed.encode()).hexdigest()
+        headers = {
+            'Authorization': 'Bearer ' + self.bearerToken,
+            'Sign': Signhash
+        }
+        datacheck = {
+            'orderId': orderId,
+            'formId': self.formId,
+            'hash': datahash
+        }
+        response = httpx.post(url, headers=headers, data=datacheck)
+        page = BeautifulSoup(response.text, 'xml')
+        print(page.PaymentState)

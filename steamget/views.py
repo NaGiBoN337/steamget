@@ -8,9 +8,9 @@ def index(request):
     return render(request,"index.html")
 
 
-def results(request,name,age):
+def results(request):
 
-    results = f"<p>1){name}</p><p>2){age}</p>"
+    results = f""
 
     return HttpResponse(results)
 

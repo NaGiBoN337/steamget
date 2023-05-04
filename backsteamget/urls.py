@@ -20,6 +20,6 @@ from steamget import views
 
 urlpatterns = [
     path('', views.index, name="home"),
-    path("results", views.results,kwargs = {"name":"oleg","age":10}),
+    re_path(r"results", views.results),
     re_path(r"^order", views.order)
 ]
