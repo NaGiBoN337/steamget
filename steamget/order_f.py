@@ -37,13 +37,14 @@ class QiwiForm():
 
         url = 'https://api.intellectmoney.ru/p2p/GetFormUrl'
         response = httpx.post(url, headers=headers,  data=self.data)
-        #print(response.text)
+        #print(self.data['orderId'])
+       # print(response.text)
         #print(response.status_code)
         #print(response.text)
         page = BeautifulSoup(response.text, 'xml')
-        OperId = page.OperationId.text
+        #OperId = page.OperationId.text
 
-        return page.Url.text, OperId
+        return page.Url.text, self.data['orderId']
 
     def checkPay(self, orderId):
         url = 'https://api.intellectmoney.ru/p2p/CheckPay'
@@ -62,4 +63,15 @@ class QiwiForm():
         }
         response = httpx.post(url, headers=headers, data=datacheck)
         page = BeautifulSoup(response.text, 'xml')
-        print(page.PaymentState)
+
+        if page.RcCode != None:
+            if page.RcCode.text == '00':
+                return True
+        else:
+            return False
+
+# request1 = QiwiForm("12")
+# # request1.createSignHash()
+# # request1.qiwi_request()
+# request1.checkPay('8650e932-ee62-46b7-9ded-86163aea448a')
+# request1.checkPay('0045bc8f-144f-4049-93a3-1f3af5478021')

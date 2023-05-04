@@ -9,12 +9,23 @@ def index(request):
 
 
 def results(request):
+    try:
+        connection = connect_mysql("localhost", "root", "root", "wallet")
+        list_oper_created = select_last_oper(connection, 35)
+        request1 = QiwiForm("1")
+        print(list_oper_created)
+        for i in list_oper_created:
+            if request1.checkPay(i):
+                update_status(connection,"paid",i)
+            else:
+                pass
 
-    results = f""
+    except Exception as e:
+        print(e)
 
     return HttpResponse(results)
 
-def order(request):
+def order(request):#
     login = request.POST.get("login",0)
     money = request.POST.get("money",0)
     promo = request.POST.get("promo",0)
@@ -29,11 +40,11 @@ def order(request):
 
     request1 = QiwiForm(str(money))
     request1.createSignHash()
-    url, OperId = request1.qiwi_request()
+    url, orderId = request1.qiwi_request()
 
     try:
         connection = connect_mysql("localhost", "root", "root", "wallet")
-        insert(connection,login, money, 0, OperId)
+        insert(connection,login, money, 0, orderId)
 
     except Exception as e:
         print(e)
