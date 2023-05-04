@@ -23,3 +23,14 @@ def insert(con,login,summ, promo, operId):
 
 def select_last_oper(con,past_time):
     query = f"SELECT * FROM wallet.order where date >= DATE_SUB(NOW() , INTERVAL {past_time} MINUTE);"
+
+    with con.cursor() as cursor:
+        cursor.execute(query)
+        result = cursor.fetchall()
+        con.commit()
+        list_oper_id = []
+        for i in result:
+            list_oper_id.append(i['OperationId'])
+        return list_oper_id
+
+
