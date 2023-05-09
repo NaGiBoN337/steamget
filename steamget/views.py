@@ -11,7 +11,7 @@ def index(request):
 def results(request):
     try:
         connection = connect_mysql("localhost", "root", "root", "wallet")
-        list_oper_created = select_last_oper(connection, 35)
+        list_oper_created = select_last_oper(connection, 20)
         request1 = QiwiForm("1")
         print(list_oper_created)
         for i in list_oper_created:
@@ -31,7 +31,8 @@ def order(request):#
     promo = request.POST.get("promo",0)
 
     try:
-        money = int(money)
+        money = int(money) * 1.20
+        print(money)
         if len(login) <= 0:
             return HttpResponsePermanentRedirect("/")
     except:

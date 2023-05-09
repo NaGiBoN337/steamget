@@ -33,7 +33,7 @@ function chechmoney(){
 	let input_field = document.getElementsByClassName('input_money')[0].value;
 
 	сommission = 35;
-	bank_com = input_field*0.22;
+	bank_com = input_field*0.21;
 	sell = parseInt(input_field) + parseInt(сommission) + parseInt(bank_com);
 	take = input_field*1;
 
