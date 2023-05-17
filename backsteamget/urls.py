@@ -21,5 +21,6 @@ from steamget import views
 urlpatterns = [
     path('', views.index, name="home"),
     re_path(r"results", views.results),
-    re_path(r"^order", views.order)
+    re_path(r"^order", views.order),
+    re_path(r"^coificent_check_promo", views.coificent_check_promo)
 ]

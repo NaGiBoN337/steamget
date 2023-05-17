@@ -57,18 +57,19 @@ class workSql():
     def promo_for_login(self, login, label):
         promo = self.select_promo(label)
         if promo:
-            #print(promo)
+            print(promo)
             query = f"SELECT count(login) as count from {self.bd_name}.order where promo = {promo['id_promo']} and PaymentState = 'paid' and login = '{login}';"
             with self.con.cursor() as cursor:
                 cursor.execute(query)
                 result = cursor.fetchall()
                 self.con.commit()
+
             if result[0]['count'] < promo['counts_use_for_user']:
-                return promo['coefficient']
+                return promo['coefficient'], promo['id_promo']
             else:# исчерпал лимит
-                return self.base_coef
+                return self.base_coef, 0
         else:# ошибка промика, такого нет
-            return self.base_coef
+            return self.base_coef, 0
 
 
     def select_promo(self, label):#только если есть и включен
@@ -84,4 +85,4 @@ class workSql():
 
 #
 # new = workSql("wallet","localhost", "root", "root")
-# print(new.promo_for_login('test','you'))
+# print(new.promo_for_login('er','youasda'))

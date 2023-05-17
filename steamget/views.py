@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
+from django.http import JsonResponse
 from steamget.order_f import QiwiForm
 from steamget.worksql import *
 import logging
@@ -9,7 +10,7 @@ logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="a",forma
 def index(request):
     return render(request,"index.html")
 
-#Qazwsxedcf1-\u2036283_Ashibur\u2036283_wallet
+#Qazwsxedcf1-\u2036283_ashibur\u2036283_wallet
 def results(request):
     try:
         ObSql = workSql("wallet", "localhost", "root", "root")
@@ -37,7 +38,7 @@ def order(request):#
 
     try:
         ObSql = workSql("wallet", "localhost", "root", "root")
-        coef = ObSql.promo_for_login(login,promo)
+        coef, id_promo = ObSql.promo_for_login(login,promo)
         print(coef)
     except Exception as e:
         logging.warning("sql" + str(e))
@@ -59,7 +60,7 @@ def order(request):#
         return HttpResponsePermanentRedirect("/")
 
     try:
-        ObSql.insert(login, money, 0, orderId)
+        ObSql.insert(login, money, id_promo, orderId)
 
     except Exception as e:
         logging.warning("sql" + str(e))
@@ -67,3 +68,13 @@ def order(request):#
 
     return HttpResponsePermanentRedirect(url)
 
+
+def coificent_check_promo(request):
+    promo_label = request.GET.get("promo", 0)
+    try:
+        ObSql = workSql("wallet", "localhost", "root", "root")
+        coef, id_promo = ObSql.promo_for_login("111", promo_label)# можно и логин приписать норм
+    except Exception as e:
+        logging.warning("sql" + str(e))
+
+    return JsonResponse({'coef':coef})

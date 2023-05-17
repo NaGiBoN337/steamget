@@ -28,12 +28,13 @@ p.addEventListener('click',changeConfirm);
 
 
 
-
+var base = 0
 function chechmoney(){
 	let input_field = document.getElementsByClassName('input_money')[0].value;
 
 	сommission = 35;
-	bank_com = input_field*0.21;
+
+	bank_com = input_field * base;
 	sell = parseInt(input_field) + parseInt(сommission) + parseInt(bank_com);
 	take = input_field*1;
 
@@ -50,6 +51,58 @@ function chechmoney(){
 	p[3].innerHTML = bank_com.toFixed(1) + " руб";
 }
 
+
+
+function checkPromo(){
+    let p = document.getElementById('checkpromo').value;
+
+    $.ajax({
+			url: '../coificent_check_promo',
+			type: 'GET',
+			dataType: "text",
+			data: { promo: p },
+
+			error: function() {
+				alert("Ошибка");
+			},
+			success: function (response) {
+			    //result = JSON.parse(response).coef;
+			    //setCoef(JSON.parse(response).coef);
+			    base = JSON.parse(response).coef;
+			    chechmoney();
+			}
+	});
+}
+
+function basecoef(){
+    let p = document.getElementById('checkpromo').value;
+
+    $.ajax({
+			url: '../coificent_check_promo',
+			type: 'GET',
+			dataType: "text",
+			data: { promo: p },
+
+			error: function() {
+				alert("Ошибка");
+			},
+			success: function (response) {
+			    //result = JSON.parse(response).coef;
+			    //setCoef(JSON.parse(response).coef);
+			    base = JSON.parse(response).coef;
+			}
+	});
+}
+
+
+
+window.onload = basecoef;
+
+var p = document.getElementById('checkpromo');
+p.addEventListener('keyup', checkPromo);//лучше input
+
+var p = document.querySelectorAll('.input_money')[0];
+p.addEventListener('input',chechmoney);
 
 
 function shadowOn(e){
@@ -84,8 +137,6 @@ p.addEventListener('click',shadowOff);
 
 
 
-var p = document.querySelectorAll('.input_money')[0];
-p.addEventListener('input',chechmoney);
 
 
 
