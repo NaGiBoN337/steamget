@@ -8,7 +8,16 @@ import logging
 logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="a",format="%(asctime)s %(levelname)s %(message)s")
 
 def index(request):
-    return render(request,"index.html")
+    try:
+        ObSql = workSql("wallet", "localhost", "root", "root")
+        count = ObSql.select_counts_paid()
+    except Exception as e:
+        count = 0
+        logging.warning("sql" + str(e))
+
+    count_user = 2104 + count
+    data ={"count_user": count_user}
+    return render(request,"index.html", context=data)
 
 #Qazwsxedcf1-\u2036283_ashibur\u2036283_wallet
 def results(request):

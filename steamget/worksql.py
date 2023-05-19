@@ -43,14 +43,22 @@ class workSql():
                 list_oper_id.append(i['OperationId'])
             return list_oper_id
 
+    def select_counts_paid(self):
+        query = f"SELECT count(PaymentState) as count FROM  {self.bd_name}.order where PaymentState = 'paid' ;"
+        with self.con.cursor() as cursor:
+            cursor.execute(query)
+            result = cursor.fetchall()
+            self.con.commit()
+        try:  # если такого нету
+            return result[0]['count']
+        except:
+            return 0
 
     def update_status(self,status,oper_id):
         query = f"UPDATE `{self.bd_name}`.`order` SET `PaymentState` = '{status}' WHERE (`OperationId` = '{oper_id}');"
         with self.con.cursor() as cursor:
             cursor.execute(query)
             self.con.commit()
-#это говно надо в функцию\процедуру объeденить sql!!!!!!!!!!!!!!!!!!!!!!
-#это говно надо в функцию\процедуру объeденить sql!!!!!!!!!!!!!!!!!!!!!!
 #это говно надо в функцию\процедуру объeденить sql!!!!!!!!!!!!!!!!!!!!!!
 #это говно надо в функцию\процедуру объeденить sql!!!!!!!!!!!!!!!!!!!!!!
 
@@ -73,7 +81,7 @@ class workSql():
 
 
     def select_promo(self, label):#только если есть и включен
-        query = f"SELECT * FROM {self.bd_name}.tpromo where label = '{label}' and turned = 1;"
+        query = f"SELECT * FROM {self.bd_name}.tpromo where label = '{label}' and turned = 1 and end_data >= NOW();"
         with self.con.cursor() as cursor:
             cursor.execute(query)
             result = cursor.fetchall()
