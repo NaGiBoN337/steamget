@@ -45,10 +45,10 @@ function chechmoney(){
 		take = 0;
 	}
 	var p = document.getElementsByClassName('money_calc');
-	p[0].innerHTML = sell.toFixed(1) + " руб";
-	p[1].innerHTML = take.toFixed(1) + " руб";
-	p[2].innerHTML = сommission.toFixed(1) + " руб";
-	p[3].innerHTML = bank_com.toFixed(1) + " руб";
+	p[3].innerHTML = sell.toFixed(1) + " руб";
+	p[0].innerHTML = take.toFixed(1) + " руб";
+	p[1].innerHTML = сommission.toFixed(1) + " руб";
+	p[2].innerHTML = bank_com.toFixed(1) + " руб";
 }
 
 

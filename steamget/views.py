@@ -7,9 +7,13 @@ import logging
 
 logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="a",format="%(asctime)s %(levelname)s %(message)s")
 
+bdname = "wallet"
+userbd = "root"
+passwordbd = "root"
+
 def index(request):
     try:
-        ObSql = workSql("wallet", "localhost", "root", "root")
+        ObSql = workSql(bdname, "localhost", userbd, passwordbd)
         count = ObSql.select_counts_paid()
     except Exception as e:
         count = 0
@@ -22,7 +26,7 @@ def index(request):
 #Qazwsxedcf1-\u2036283_ashibur\u2036283_wallet
 def results(request):
     try:
-        ObSql = workSql("wallet", "localhost", "root", "root")
+        ObSql = workSql(bdname, "localhost", userbd, passwordbd)
         ObSql.select_last_oper(20)
         request1 = QiwiForm("1")
         print(list_oper_created)
@@ -46,26 +50,29 @@ def order(request):#
     promo = request.POST.get("promo",'base')
 
     try:
-        ObSql = workSql("wallet", "localhost", "root", "root")
+        ObSql = workSql(bdname, "localhost", userbd, passwordbd)
         coef, id_promo = ObSql.promo_for_login(login,promo)
         print(coef)
     except Exception as e:
         logging.warning("sql" + str(e))
 
     try:
-        money = round(int(money) * (1 + coef),2)
+        steam_money = money
+        money = round(int(money) * (1 + coef), 2)
         print(money)
         if len(login) <= 0:
             return HttpResponsePermanentRedirect("/")
-    except:
+    except Exception as e:
+        logging.warning(str(e))
         return HttpResponsePermanentRedirect("/")
 
 
     try: # ошибка на стороне платежки(1 раз словил)
-        request1 = QiwiForm(str(money))
+        request1 = QiwiForm(str( ))
         request1.createSignHash()
         url, orderId = request1.qiwi_request()
-    except:
+    except Exception as e:
+        logging.warning(str(e))
         return HttpResponsePermanentRedirect("/")
 
     try:
@@ -81,7 +88,7 @@ def order(request):#
 def coificent_check_promo(request):
     promo_label = request.GET.get("promo", 0)
     try:
-        ObSql = workSql("wallet", "localhost", "root", "root")
+        ObSql = workSql(bdname, "localhost", userbd, passwordbd)
         coef, id_promo = ObSql.promo_for_login("111", promo_label)# можно и логин приписать норм
     except Exception as e:
         logging.warning("sql" + str(e))

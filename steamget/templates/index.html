@@ -97,7 +97,7 @@
 
 					<div class="row">
 						<div class="col  input_field">
-							<input class="input_login input_money" name="money" type="text" placeholder="100 руб" onkeyup="this.value = this.value.replace(/[^\d]/g,'');"  maxlength="10" required>
+							<input class="input_login input_money" name="money" type="text" placeholder="сумма пополнения" onkeyup="this.value = this.value.replace(/[^\d]/g,'');"  maxlength="10" required>
 							<div class="div_money">
 								<img src="../static/img/cash3.svg" alt="">
 							</div>
@@ -107,8 +107,8 @@
 					<div class="row ">
 						<div class="col radio_input paddingf">
 							<span class=""><input type="radio" name="SUM" value="100">100₽</span>
-							<span class=""><input type="radio" name="SUM" value="200">200₽</span>
 							<span class=""><input type="radio" name="SUM" value="500">500₽</span>
+							<span class=""><input type="radio" name="SUM" value="1000">1000₽</span>
 							<span class=""><input type="radio" name="SUM" value="2000">2000₽</span>
 						</div>
 					</div>
@@ -180,11 +180,6 @@
 
 
 					<div class="row mt-3">
-						<div class="row_calc ">
-							<div class="title_calc">Заплатите:</div>
-							<div class="border_calc"></div>
-							<div class="money_calc">0 руб</div>
-						</div>
 						<div class="row_calc">
 							<div class="title_calc">Получите на баланс Steam:</div>
 							<div class="border_calc"></div>
@@ -203,6 +198,11 @@
 							<div class="mini_modal_banks">
 								<img src="../static/img/quest.svg" alt="">
 							</div>
+							<div class="border_calc"></div>
+							<div class="money_calc">0 руб</div>
+						</div>
+						<div class="row_calc ">
+							<div class="title_calc">Заплатите:</div>
 							<div class="border_calc"></div>
 							<div class="money_calc">0 руб</div>
 						</div>
@@ -736,7 +736,7 @@
 
 	<div class="shadowW"></div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-	<script src="../static/js/js15.js"></script>
+	<script src="../static/js/js16.js"></script>
 
 
 </body>
